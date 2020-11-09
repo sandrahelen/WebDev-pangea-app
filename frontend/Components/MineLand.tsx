@@ -4,8 +4,8 @@ import {View, Text} from "react-native";
 const MineLand = () => {
 
     return (
-        <View>
-             <Text>Mine</Text>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+             <Text>Visited Countries</Text>
         </View>
         );
 

@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 
 import AlleLand from "./Components/AlleLand";
 import MineLand from "./Components/MineLand";
+import TabNav from "./Components/TabNav";
 
 const customFetch = (uri:string, options:any) => {
   return fetch(uri, options)
@@ -27,16 +28,27 @@ const client = new ApolloClient({
 
 export default function App() {
   return (
+        <ApolloProvider client={client}>
+          <TabNav/>
+        </ApolloProvider>
+  );
+}
+
+//Gammel versjon
+/*
+export default function App() {
+  return (
       <ApolloProvider client={client}>
         <Router sceneStyle={{paddingTop: 55}}>
           <Scene key="root">
-          <Scene key="AlleLand" component={AlleLand} title="Alle land"/>
+            <Scene key="AlleLand" component={AlleLand} title="Alle land"/>
           </Scene>
         </Router>
       </ApolloProvider>
 
   );
 }
+ */
 
 const styles = StyleSheet.create({
   container: {
