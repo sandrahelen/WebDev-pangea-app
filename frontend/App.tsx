@@ -3,14 +3,16 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
-import { NetworkInfo } from "react-native-network-info";
+import Constants from 'expo-constants';
 
 import AlleLand from "./Components/AlleLand";
 import MineLand from "./Components/MineLand";
 import TabNav from "./Components/TabNav";
 
-let LOCAL_SYSTEM_IP_ADDRESS: string | null = "";
-NetworkInfo.getIPAddress().then(ipAddress => LOCAL_SYSTEM_IP_ADDRESS = ipAddress);
+
+const {manifest} = Constants
+const ipv4Address = manifest.debuggerHost?.split(':')[0];
+console.log('ip: ' + ipv4Address)
 
 const customFetch = (uri:string, options:any) => {
   return fetch(uri, options)
@@ -22,11 +24,11 @@ const customFetch = (uri:string, options:any) => {
   });
 };
 
-const client = new ApolloClient({
+const client =  new ApolloClient({
   link: createHttpLink({
     //uri: "http://localhost:4000/graphql",
-    uri: "http://192.168.0.148:4000/graphql", //pc ip adresse
-    //uri: 'http://${LOCAL_SYSTEM_IP_ADDRESS}:4000/graphql',
+    //uri: "http://192.168.0.148:4000/graphql", //pc ip adresse
+    uri: `http://${ipv4Address}:4000/graphql`,
     fetch: customFetch,
   }),
   cache: new InMemoryCache()

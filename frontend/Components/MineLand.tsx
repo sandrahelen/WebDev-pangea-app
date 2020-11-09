@@ -20,11 +20,7 @@ const MineLand = () => {
              <Text>Visited Countries</Text>
         </View>
         );
-    }
-
-
-
-};
+    };
 export default MineLand;
 
 const styles = StyleSheet.create({
