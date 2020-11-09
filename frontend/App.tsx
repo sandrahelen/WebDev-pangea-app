@@ -1,12 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Scene, Router, Actions} from 'react-native-router-flux';
-import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
+import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import Constants from 'expo-constants';
 
-import AlleLand from "./Components/AlleLand";
-import MineLand from "./Components/MineLand";
 import TabNav from "./Components/TabNav";
 
 
@@ -43,22 +40,6 @@ export default function App() {
   );
 }
 
-//Gammel versjon
-/*
-export default function App() {
-  return (
-      <ApolloProvider client={client}>
-        <Router sceneStyle={{paddingTop: 55}}>
-          <Scene key="root">
-            <Scene key="AlleLand" component={AlleLand} title="Alle land"/>
-          </Scene>
-        </Router>
-      </ApolloProvider>
-
-  );
-}
- */
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -67,31 +48,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-/*
-<Router sceneStyle={{paddingTop: 55}}>
-      <Scene key="root">
-      <Scene key="AlleLand" component={AlleLand} title="alle"/>
-      <Scene key="MineLand" component={MineLand} title="mine"/>
-      </Scene>
-    </Router>
-    <View style={styles.container}>
-      <Text>Heisann!!</Text>
-      <StatusBar style="auto" />
-    </View>
- */
-/*
-<ApolloProvider client={client}>
-        <Router sceneStyle={{paddingTop: 55}}>
-          <Scene key="root">
-          <Scene key="AlleLand" component={AlleLand} title="Alle land"/>
-          </Scene>
-        </Router>
-      </ApolloProvider>
- */
-/*
-<View style={{paddingTop: 55}}>
-        {error ? <Text>Oh no! {error}</Text> : console.log('no error')}
-        {loading ? (<Text>Loading ...</Text>) : (
-            <Text>{data.country.city}</Text>)}
-        </View>
- */
