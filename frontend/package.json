@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
+    "core-ts": "0.0.1",
     "@react-navigation/bottom-tabs": "^5.10.6",
     "@react-navigation/native": "^5.8.6",
     "expo": "~39.0.2",
@@ -19,6 +20,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-network-info": "^5.2.1",
     "react-native-paper": "^4.3.1",
     "react-native-reanimated": "^1.13.1",
     "react-native-router-flux": "^4.2.0",
