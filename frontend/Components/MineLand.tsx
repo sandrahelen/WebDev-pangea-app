@@ -15,21 +15,9 @@ const GET_COUNTRY = gql`
 
 const MineLand = () => {
 
-    const { data, error, loading } = useQuery(GET_COUNTRY,
-        {variables: { country: "Norway"}},);
-
-    if (error) {
-        console.error(error);
-        return <View style={styles.container}><Text>Error</Text></View>;
-    }
-    else if (loading) {
-        return <View style={styles.container}><Text>Loading ..</Text></View>;
-    }
-
-    else{
-       return (
-        <View style={styles.container}>
-             <Text>{data.country.city}</Text>
+    return (
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+             <Text>Visited Countries</Text>
         </View>
         );
     }

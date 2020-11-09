@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
 import { NetworkInfo } from "react-native-network-info";
 
 import AlleLand from "./Components/AlleLand";
 import MineLand from "./Components/MineLand";
+import TabNav from "./Components/TabNav";
 
 let LOCAL_SYSTEM_IP_ADDRESS: string | null = "";
 NetworkInfo.getIPAddress().then(ipAddress => LOCAL_SYSTEM_IP_ADDRESS = ipAddress);
@@ -34,13 +35,27 @@ const client = new ApolloClient({
 export default function App() {
 
   return (
-      <ApolloProvider client={client}>
-        <AlleLand/>
+        <ApolloProvider client={client}>
+          <TabNav/>
+        </ApolloProvider>
+  );
+}
 
+//Gammel versjon
+/*
+export default function App() {
+  return (
+      <ApolloProvider client={client}>
+        <Router sceneStyle={{paddingTop: 55}}>
+          <Scene key="root">
+            <Scene key="AlleLand" component={AlleLand} title="Alle land"/>
+          </Scene>
+        </Router>
       </ApolloProvider>
 
   );
 }
+ */
 
 const styles = StyleSheet.create({
   container: {
