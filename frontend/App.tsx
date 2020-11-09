@@ -8,7 +8,8 @@ import { NetworkInfo } from "react-native-network-info";
 import AlleLand from "./Components/AlleLand";
 import MineLand from "./Components/MineLand";
 
-const LOCAL_SYSTEM_IP_ADDRESS = NetworkInfo.getIPAddress();
+let LOCAL_SYSTEM_IP_ADDRESS: string | null = "";
+NetworkInfo.getIPAddress().then(ipAddress => LOCAL_SYSTEM_IP_ADDRESS = ipAddress);
 
 const customFetch = (uri:string, options:any) => {
   return fetch(uri, options)

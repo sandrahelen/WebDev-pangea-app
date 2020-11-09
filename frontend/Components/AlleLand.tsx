@@ -4,9 +4,9 @@ import {View, Text, StyleSheet, ScrollView} from "react-native";
 import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
 
-const GET_COUNTRY = gql`
-    query country ($country: String) {
-        country (country: $country){
+const GET_COUNTRIES = gql`
+    query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
+        countries (filter: $filter, search: $search, sort: $sort, skip: $skip){
             country
             continent
             city
@@ -17,8 +17,12 @@ const GET_COUNTRY = gql`
 
 const AlleLand = () => {
 
-    const { data, error, loading } = useQuery(GET_COUNTRY,
-        {variables: { country: "Norway"}},);
+    const { data, error, loading } = useQuery(GET_COUNTRIES,
+        {variables: { filter:  " ",
+                search:  " ",
+                sort: 1,
+                skip: 1 !== 1 ? (1 - 1) * 10 : 0
+                }},);
 
     if (error) {
         console.error(error);
@@ -37,15 +41,12 @@ const AlleLand = () => {
                     <DataTable.Title>Kontinent</DataTable.Title>
                 </DataTable.Header>
 
+                {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
                 <DataTable.Row>
-                  <DataTable.Cell>Norge</DataTable.Cell>
-                  <DataTable.Cell>Europa</DataTable.Cell>
+                  <DataTable.Cell key={countryData.toString()}>{countryData.country}</DataTable.Cell>
+                  <DataTable.Cell>{countryData.continent}</DataTable.Cell>
                 </DataTable.Row>
-
-                <DataTable.Row>
-                  <DataTable.Cell>{data.country.country}</DataTable.Cell>
-                  <DataTable.Cell>{data.country.city}</DataTable.Cell>
-                </DataTable.Row>
+                ))}
 
                 <DataTable.Pagination
                   page={1}
