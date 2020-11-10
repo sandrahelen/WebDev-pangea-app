@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {View, Text, StyleSheet, ScrollView} from "react-native";
 import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
+import {SearchBar} from "react-native-elements";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -40,7 +41,15 @@ const AlleLand = () => {
 
     else{
         return (
-            <View style={{paddingTop: 55}}>
+            <ScrollView>
+                <SearchBar
+                    round
+                    searchIcon={{ size: 20 }}
+                    //onChangeText={(text:string) => searchFilterFunction(text)}
+                    //onClear={(text:string) => searchFilterFunction('')}
+                    placeholder="Search"
+                    //value={search}
+                />
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title>Land</DataTable.Title>
@@ -61,7 +70,7 @@ const AlleLand = () => {
                     label={`${from + 1}-${to} of ${243}`}
                 />
             </DataTable>
-            </View>
+            </ScrollView>
             );
     }
 

@@ -2,7 +2,7 @@
 // react-native-vector-icons/Ionicons otherwise.
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { Ionicons, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -14,6 +14,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNav() {
     return (
+
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
@@ -23,13 +24,10 @@ export default function TabNav() {
                         if (route.name === 'Home') {
                             iconName = focused ? 'world' : 'world-o';
                             return <Fontisto name={iconName} size={size} color={color} />
-                        } else if (route.name === 'Visited') {
-                            iconName = focused ? 'pin' : 'pin-outline';
-                            return <MaterialCommunityIcons name={iconName} size={size} color={color} />
+                        } else if (route.name === 'Info') {
+                            iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+                            return <Ionicons name={iconName} size={size} color={color} />
                         }
-
-                        // You can return any component that you like here!
-                        //return <Ionicons name={iconName} size={size} color={color} />;
                     },
                 })}
                 tabBarOptions={{
@@ -38,7 +36,7 @@ export default function TabNav() {
                 }}
             >
                 <Tab.Screen name="Home" component={AlleLand} />
-                <Tab.Screen name="Visited" component={MineLand} />
+                <Tab.Screen name="Info" component={MineLand} />
             </Tab.Navigator>
         </NavigationContainer>
     );

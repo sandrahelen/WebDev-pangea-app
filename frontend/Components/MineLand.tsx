@@ -16,11 +16,12 @@ const GET_COUNTRY = gql`
 const MineLand = () => {
 
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-             <Text>Visited Countries</Text>
+        <View style={styles.container}>
+             <Text>Information about country</Text>
         </View>
         );
-    };
+};
+
 export default MineLand;
 
 const styles = StyleSheet.create({
