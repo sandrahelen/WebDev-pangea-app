@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from "react";
+import React from "react";
 import {View, Text, StyleSheet, ScrollView} from "react-native";
 import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
@@ -57,9 +56,9 @@ const AlleLand = () => {
                 </DataTable.Header>
 
                 {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
-                <DataTable.Row>
-                  <DataTable.Cell key={countryData.toString()}>{countryData.country}</DataTable.Cell>
-                  <DataTable.Cell>{countryData.continent}</DataTable.Cell>
+                <DataTable.Row onPress={() => console.log('pressed')}>
+                  <DataTable.Cell key={countryData.toString()} >{countryData.country}</DataTable.Cell>
+                  <DataTable.Cell key={2}>{countryData.continent}</DataTable.Cell>
                 </DataTable.Row>
                 ))}
 

@@ -1,10 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {Scene, Router, Actions} from 'react-native-router-flux';
-import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
-import { NetworkInfo } from "react-native-network-info";
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import Constants from 'expo-constants';
 
 import TabNav from "./Components/TabNav";
