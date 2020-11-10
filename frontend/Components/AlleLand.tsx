@@ -16,13 +16,19 @@ const GET_COUNTRIES = gql`
     }
 `;
 
+const itemsPerPage = 10;
+
 const AlleLand = () => {
+
+    const [page, setPage] = React.useState(0);
+    const from = page * itemsPerPage;
+    const to = (page + 1) * itemsPerPage;
 
     const { data, error, loading } = useQuery(GET_COUNTRIES,
         {variables: { filter:  " ",
                 search:  " ",
                 sort: 1,
-                skip: 1 !== 1 ? (1 - 1) * 10 : 0
+                skip: page * itemsPerPage
                 }},);
 
     if (error) {
@@ -58,20 +64,15 @@ const AlleLand = () => {
                 ))}
 
                 <DataTable.Pagination
-                  page={1}
-                  numberOfPages={3}
-                  onPageChange={page => {
-                    console.log(page);
-                  }}
-                  label="1-2 of 6"
+                    page={page}
+                    numberOfPages={Math.ceil(243 / itemsPerPage)}
+                    onPageChange={page => setPage(page)}
+                    label={`${from + 1}-${to} of ${243}`}
                 />
             </DataTable>
             </ScrollView>
             );
     }
-
-
-
 
 };
 export default AlleLand;

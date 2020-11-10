@@ -21,6 +21,7 @@ const MineLand = () => {
         </View>
         );
 };
+
 export default MineLand;
 
 const styles = StyleSheet.create({
