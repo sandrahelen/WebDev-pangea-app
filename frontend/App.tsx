@@ -5,6 +5,7 @@ import Constants from 'expo-constants';
 
 import TabNav from "./Components/TabNav";
 import {Header, SearchBar} from "react-native-elements";
+import {NavigationContainer} from "@react-navigation/native";
 
 
 const {manifest} = Constants
@@ -35,12 +36,14 @@ export default function App() {
 
   return (
         <ApolloProvider client={client}>
-          <Header placement={"center"}  centerComponent={{ text: "PANGEA"}}
+            <NavigationContainer>
+                <Header placement={"center"}  centerComponent={{ text: "PANGEA"}}
                   containerStyle={{
                     backgroundColor: '#DFAE74',
                     justifyContent: 'space-around',
                   }}/>
-          <TabNav/>
+                <TabNav/>
+            </NavigationContainer>
         </ApolloProvider>
   );
 }

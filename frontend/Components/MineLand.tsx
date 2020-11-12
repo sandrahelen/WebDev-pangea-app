@@ -13,7 +13,7 @@ const GET_COUNTRY = gql`
     }
 `;
 
-const MineLand = () => {
+const MineLand = (navigation:any) => {
 
     return (
         <View style={styles.container}>

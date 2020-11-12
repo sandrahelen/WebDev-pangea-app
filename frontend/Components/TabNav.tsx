@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+
 
 //Views
 import AlleLand from "./AlleLand";
@@ -14,30 +14,27 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNav() {
     return (
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName:string;
 
-        <NavigationContainer>
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                        let iconName:string;
-
-                        if (route.name === 'Home') {
-                            iconName = focused ? 'world' : 'world-o';
-                            return <Fontisto name={iconName} size={size} color={color} />
-                        } else if (route.name === 'Info') {
-                            iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
-                            return <Ionicons name={iconName} size={size} color={color} />
-                        }
-                    },
-                })}
-                tabBarOptions={{
-                    activeTintColor: 'black',
-                    inactiveTintColor: 'gray',
-                }}
-            >
-                <Tab.Screen name="Home" component={AlleLand} />
-                <Tab.Screen name="Info" component={MineLand} />
-            </Tab.Navigator>
-        </NavigationContainer>
+                    if (route.name === 'Home') {
+                        iconName = focused ? 'world' : 'world-o';
+                        return <Fontisto name={iconName} size={size} color={color} />
+                    } else if (route.name === 'Info') {
+                        iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+                        return <Ionicons name={iconName} size={size} color={color} />
+                    }
+                },
+            })}
+            tabBarOptions={{
+                activeTintColor: 'black',
+                inactiveTintColor: 'gray',
+            }}
+        >
+            <Tab.Screen name="Home" component={AlleLand} />
+            <Tab.Screen name="Info" component={MineLand} />
+        </Tab.Navigator>
     );
 }
