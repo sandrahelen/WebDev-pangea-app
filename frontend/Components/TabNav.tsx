@@ -5,10 +5,9 @@ import { Text, View } from 'react-native';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
 //Views
 import AlleLand from "./AlleLand";
-import MineLand from "./MineLand";
+import Info from "./Info";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +33,11 @@ export default function TabNav() {
             }}
         >
             <Tab.Screen name="Home" component={AlleLand} />
-            <Tab.Screen name="Info" component={MineLand} />
+            <Tab.Screen name="Info" component={Info} />
         </Tab.Navigator>
     );
 }
+
+/*
+children={()=><Info countryInfo={" "}/>}
+ */

@@ -4,7 +4,7 @@ import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
 import {SearchBar} from "react-native-elements";
 
-import MineLand from "./MineLand";
+import Info from "./MineLand";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -65,7 +65,7 @@ const AlleLand = ({navigation}) => {
                 </DataTable.Header>
 
                 {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
-                <DataTable.Row onPress={() =>  navigation.navigate('Info')}>
+                <DataTable.Row onPress={() =>  navigation.navigate('Info', {countryInfo: countryData.country})}>
                   <DataTable.Cell key={countryData.toString()} >{countryData.country}</DataTable.Cell>
                   <DataTable.Cell key={2}>{countryData.continent}</DataTable.Cell>
                 </DataTable.Row>

@@ -13,16 +13,17 @@ const GET_COUNTRY = gql`
     }
 `;
 
-const MineLand = (navigation:any) => {
+const Info = (countryInfo, navigation) => {
 
     return (
         <View style={styles.container}>
              <Text>Information about country</Text>
+            <Text>{JSON.stringify(countryInfo)}</Text>
         </View>
         );
 };
 
-export default MineLand;
+export default Info;
 
 const styles = StyleSheet.create({
   container: {
