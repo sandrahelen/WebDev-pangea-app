@@ -24,20 +24,20 @@ const AlleLand = () => {
     const from = page * itemsPerPage;
     const to = (page + 1) * itemsPerPage;
 
-    const component1 = () => <Text>All Countries</Text>
-    const component2 = () => <Text>Africa</Text>
-    const component3 = () => <Text>Asia</Text>
-    const component4 = () => <Text>Europe</Text>
-    const component5 = () => <Text>Oceania</Text>
-    const component6 = () => <Text>North America</Text>
-    const component7 = () => <Text>South America</Text>
+    const [search, setSearch] = React.useState("");
+    const [filter, setFilter] = React.useState("");
 
     const { data, error, loading } = useQuery(GET_COUNTRIES,
-        {variables: { filter:  " ",
-                search:  " ",
+        {variables: {
+                filter:  filter || " ",
+                search:  search || " ",
                 sort: 1,
                 skip: page * itemsPerPage
                 }},);
+
+    function filterContinent(continent:string) {
+        setFilter(continent);
+    }
 
     if (error) {
         console.error(error);
@@ -55,46 +55,52 @@ const AlleLand = () => {
                         round
                         lightTheme
                         searchIcon={{ size: 20 }}
-                        //onChangeText={(text:string) => searchFilterFunction(text)}
-                        //onClear={(text:string) => searchFilterFunction('')}
+                        onChangeText={(text:string) => setSearch(text)}
                         placeholder="Search"
-                        //value={search}
+                        value={search}
                     />
                     <ScrollView horizontal={true} style={{ paddingBottom: 7, paddingLeft: 10}}>
                         <Button
                             title="All Countries"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent(" ")}
                         />
                         <Button
                             title="Africa"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Africa")}
                         />
                         <Button
                             title="Asia"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Asia")}
                         />
                         <Button
                             title="Europe"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Europe")}
                         />
                         <Button
                             title="Oceania"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Oceania")}
                         />
                         <Button
                             title="North America"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("North America")}
                         />
                         <Button
                             title="South America"
                             titleStyle={{ color: 'black', fontSize: 12 }}
                             buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5, marginRight: 20}}
+                            onPress={() => filterContinent("South America")}
                         />
                     </ScrollView>
                 </View>
