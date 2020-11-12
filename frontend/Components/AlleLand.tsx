@@ -27,7 +27,6 @@ const AlleLand = () => {
     const to = (page + 1) * itemsPerPage;
 
     const [search, setSearch] = React.useState("");
-    const [filterSearch, setFilterSearch] = React.useState("");
     const [filter, setFilter] = React.useState("");
     const [sort, setSort] = useState(0);
 
@@ -83,6 +82,7 @@ const AlleLand = () => {
                         onChangeText={(text:string) => setSearch(text)}
                         placeholder="Search"
                         value={search}
+                        inputStyle={{color: 'black'}}
                     />
                     <ScrollView horizontal={true} style={{ paddingBottom: 7, paddingLeft: 10}}>
                         <Button
