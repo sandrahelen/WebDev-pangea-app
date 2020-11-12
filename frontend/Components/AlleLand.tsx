@@ -44,7 +44,65 @@ const AlleLand = () => {
         return <View style={styles.container}><Text>Error</Text></View>;
     }
     else if (loading) {
-        return <View style={styles.container}><Text>Loading ..</Text></View>;
+        return (
+            <View>
+                <View style={{backgroundColor: '#e1e8ee'}}>
+                    <SearchBar
+                        round
+                        lightTheme
+                        searchIcon={{ size: 20 }}
+                        onChangeText={(text:string) => setSearch(text)}
+                        placeholder="Search"
+                        value={search}
+                    />
+                    <ScrollView horizontal={true} style={{ paddingBottom: 7, paddingLeft: 10}}>
+                        <Button
+                            title="All Countries"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent(" ")}
+                        />
+                        <Button
+                            title="Africa"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Africa")}
+                        />
+                        <Button
+                            title="Asia"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Asia")}
+                        />
+                        <Button
+                            title="Europe"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Europe")}
+                        />
+                        <Button
+                            title="Oceania"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("Oceania")}
+                        />
+                        <Button
+                            title="North America"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5}}
+                            onPress={() => filterContinent("North America")}
+                        />
+                        <Button
+                            title="South America"
+                            titleStyle={{ color: 'black', fontSize: 12 }}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5, marginRight: 20}}
+                            onPress={() => filterContinent("South America")}
+                        />
+                    </ScrollView>
+                </View>
+                <View style={styles.container}><Text>Loading ..</Text></View>
+            </View>
+        );
     }
 
     else{
