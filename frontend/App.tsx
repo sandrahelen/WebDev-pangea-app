@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
 import { NetworkInfo } from "react-native-network-info";
