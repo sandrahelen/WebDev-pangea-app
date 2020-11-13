@@ -14,12 +14,12 @@ export default {
         countries: async (obj, {filter, search, sort, skip}, context, info) => {
             try {
                 if (filter === " ") {
-                    if (search === " ") {
+                    if (search === "") {
                         return Country.find().sort({country: sort}).skip(skip).limit(10).exec();
                     }
                     return Country.find({country: new RegExp(search)}).sort({country: sort}).skip(skip).limit(10).exec()
                 }
-                return Country.find({continent: filter}).sort({country: sort}).skip(skip).limit(10).exec();
+                return Country.find({continent: filter, country: new RegExp(search)}).sort({country: sort}).skip(skip).limit(10).exec();
             } catch (e) {
                 console.log(e);
                 return [];
