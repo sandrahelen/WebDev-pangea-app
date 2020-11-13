@@ -65,9 +65,9 @@ const AlleLand = ({navigation}) => {
                 </DataTable.Header>
 
                 {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
-                <DataTable.Row onPress={() =>  navigation.navigate('Info', {countryInfo: countryData.country})}>
-                  <DataTable.Cell key={countryData.toString()} >{countryData.country}</DataTable.Cell>
-                  <DataTable.Cell key={2}>{countryData.continent}</DataTable.Cell>
+                <DataTable.Row onPress={() =>  navigation.navigate('Info', {countryInfo: countryData.country})} key={JSON.stringify(countryData.country)}>
+                  <DataTable.Cell  >{countryData.country}</DataTable.Cell>
+                  <DataTable.Cell>{countryData.continent}</DataTable.Cell>
                 </DataTable.Row>
                 ))}
 

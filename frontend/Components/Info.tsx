@@ -19,6 +19,7 @@ const Info = (countryInfo, navigation) => {
         <View style={styles.container}>
              <Text>Information about country</Text>
             <Text>{JSON.stringify(countryInfo)}</Text>
+
         </View>
         );
 };
@@ -33,3 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+//{JSON.stringify(countryInfo)}
