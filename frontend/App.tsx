@@ -38,7 +38,7 @@ export default function App() {
 
   return (
         <ApolloProvider client={client}>
-          <Header placement={"center"}  centerComponent={{ text: "PANGEA"}}
+          <Header placement={"center"}  centerComponent={{ text: "P A N G E A", style: {fontSize: 20}}}
                   containerStyle={{
                     backgroundColor: '#DFAE74',
                     justifyContent: 'space-around',

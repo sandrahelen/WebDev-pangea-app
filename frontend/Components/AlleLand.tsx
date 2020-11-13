@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from "react";
-import {View, Text, StyleSheet, ScrollView} from "react-native";
+import {View, Text, StyleSheet, ScrollView, SafeAreaView} from "react-native";
 import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
-import {Button, SearchBar} from "react-native-elements";
+import {Button, Icon, SearchBar} from "react-native-elements";
+import {Fontisto, Ionicons} from "@expo/vector-icons";
+import {DataTableRow} from "react-native-paper/lib/typescript/src/components/DataTable/DataTableRow";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -31,8 +33,8 @@ const AlleLand = () => {
     const { data, error, loading } = useQuery(GET_COUNTRIES,
         {variables: {
                 filter:  filter || " ",
-                search:  search || " ",
-                sort: 1,
+                search:  search || "",
+                sort: sort,
                 skip: page * itemsPerPage
                 }},);
 
@@ -41,25 +43,33 @@ const AlleLand = () => {
     }
 
     function sortCountry() {
-        if (sort === 1) {
+        let current:boolean = false;
+        let iconName:string;
+
+        if (sort === 0) {
             setSort(-1);
 
         }
         else {
-            setSort(1);
+            setSort(0);
         }
-        console.log(sort)
+        //console.log(sort)
+    }
+
+    function iconCountry() {
+        let iconName:string;
+        iconName = sort ? 'ios-arrow-round-down' : 'ios-arrow-round-up';
+        return iconName;
     }
 
     if (error) {
         console.error(error);
         return <View style={styles.container}><Text>Error</Text></View>;
     }
-    else if (loading) {
-        return (
-            <View style={styles.container}><Text>Loading ..</Text></View>
-        );
+    /*else if (loading) {
+        return (<View style={styles.container}><Text>Loading...</Text></View>);
     }
+     */
 
     else{
         return (
@@ -72,6 +82,7 @@ const AlleLand = () => {
                         onChangeText={(text:string) => setSearch(text)}
                         placeholder="Search"
                         value={search}
+                        inputStyle={{color: 'black'}}
                     />
                     <ScrollView horizontal={true} style={{ paddingBottom: 7, paddingLeft: 10}}>
                         <Button
@@ -113,33 +124,34 @@ const AlleLand = () => {
                         <Button
                             title="South America"
                             titleStyle={{ color: 'black', fontSize: 12 }}
-                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5, marginRight: 20}}
+                            buttonStyle={{ backgroundColor: 'white', padding: 8, margin: 5, marginRight: 25}}
                             onPress={() => filterContinent("South America")}
                         />
                     </ScrollView>
                 </View>
-                <DataTable>
-                    <DataTable.Header>
-                        <DataTable.Title>Land</DataTable.Title>
-                        <DataTable.Title>Kontinent</DataTable.Title>
-                    </DataTable.Header>
+                { loading ? <Text style={{textAlign: 'center', textAlignVertical: 'center', marginTop: '50%'}}>Loading...</Text> :
+                    <DataTable>
+                        <DataTable.Header>
+                            <DataTable.Title onPress={() => sortCountry()}>Country <Ionicons name={iconCountry()} size={15}/></DataTable.Title>
+                            <DataTable.Title>Continent</DataTable.Title>
+                        </DataTable.Header>
 
-                    {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
-                    <DataTable.Row>
-                      <DataTable.Cell key={countryData.toString()}>{countryData.country}</DataTable.Cell>
-                      <DataTable.Cell>{countryData.continent}</DataTable.Cell>
-                    </DataTable.Row>
-                    ))}
+                        {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
+                            <DataTable.Row>
+                                <DataTable.Cell key={countryData.toString()}>{countryData.country}</DataTable.Cell>
+                                <DataTable.Cell>{countryData.continent}</DataTable.Cell>
+                            </DataTable.Row>
+                        ))}
 
-                    <DataTable.Pagination
-                        page={page}
-                        numberOfPages={Math.ceil(243 / itemsPerPage)}
-                        onPageChange={page => setPage(page)}
-                        label={`${from + 1}-${to} of ${243}`}
-                    />
-                </DataTable>
+                        <DataTable.Pagination
+                            page={page}
+                            numberOfPages={Math.ceil(243 / itemsPerPage)}
+                            onPageChange={page => setPage(page)}
+                            label={`${from + 1}-${to} of ${243}`}
+                        />
+                    </DataTable>}
             </ScrollView>
-            );
+        );
     }
 
 };
