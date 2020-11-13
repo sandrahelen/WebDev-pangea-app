@@ -13,15 +13,31 @@ const GET_COUNTRY = gql`
     }
 `;
 
-const Info = (countryInfo, navigation) => {
+const Info = ({route}) => {
 
-    return (
+    const country = route.params.countryInfo
+
+    const { data, error, loading } = useQuery(GET_COUNTRY,
+        {variables: { country:  country,}},);
+
+    if (error) {
+        console.error(error);
+        return <View style={styles.container}><Text>Error</Text></View>;
+    }
+    else if (loading) {
+        return <View style={styles.container}><Text>Loading ..</Text></View>;
+    }
+    else {
+        return (
         <View style={styles.container}>
-             <Text>Information about country</Text>
-            <Text>{JSON.stringify(countryInfo)}</Text>
-
+            <Text>Country: {data.country.country}</Text>
+            <Text>City: {data.country.city}</Text>
+            <Text>Continent: {data.country.continent}</Text>
+            <Text>National dish: {data.country.dish}</Text>
         </View>
         );
+    }
+
 };
 
 export default Info;

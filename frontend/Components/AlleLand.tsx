@@ -4,8 +4,6 @@ import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
 import {SearchBar} from "react-native-elements";
 
-import Info from "./MineLand";
-
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
         countries (filter: $filter, search: $search, sort: $sort, skip: $skip){
