@@ -45,15 +45,6 @@ const AlleLand = ({navigation}:any) => {
                 }},);
 
     let to = (page + 1) * itemsPerPage;
-    /*if (to >= countCountries()) {
-        to = countCountries();
-
-    }
-    else {
-        to = (page + 1) * itemsPerPage;
-    }
-     */
-    //const to = (page + 1) * itemsPerPage;
 
     //Teller forekomster av land til pagination
     function countCountries() {
