@@ -1,7 +1,6 @@
 // You can import Ionicons from @expo/vector-icons if you use Expo or
 // react-native-vector-icons/Ionicons otherwise.
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -37,7 +36,3 @@ export default function TabNav() {
         </Tab.Navigator>
     );
 }
-
-/*
-children={()=><Info countryInfo={" "}/>}
- */

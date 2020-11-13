@@ -1,12 +1,9 @@
-import React from "react";
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from "react";
-import {View, Text, StyleSheet, ScrollView, SafeAreaView} from "react-native";
+import {View, Text, StyleSheet, ScrollView} from "react-native";
 import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
-import {Button, Icon, SearchBar} from "react-native-elements";
-import {Fontisto, Ionicons} from "@expo/vector-icons";
-import {DataTableRow} from "react-native-paper/lib/typescript/src/components/DataTable/DataTableRow";
+import {Button, SearchBar} from "react-native-elements";
+import {Ionicons} from "@expo/vector-icons";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -61,7 +58,6 @@ const AlleLand = ({navigation}) => {
         else {
             setSort(0);
         }
-        //console.log(sort)
     }
 
     function iconCountry() {
@@ -74,10 +70,6 @@ const AlleLand = ({navigation}) => {
         console.error(error);
         return <View style={styles.container}><Text>Error</Text></View>;
     }
-    /*else if (loading) {
-        return (<View style={styles.container}><Text>Loading...</Text></View>);
-    }
-     */
 
     else{
         return (
