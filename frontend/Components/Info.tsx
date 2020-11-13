@@ -15,9 +15,9 @@ const GET_COUNTRY = gql`
 
 const Info = ({route}) => {
 
-    const country = route.params.countryInfo
-
-    const { data, error, loading } = useQuery(GET_COUNTRY,
+    try {
+        let country = route.params.countryInfo;
+        const { data, error, loading } = useQuery(GET_COUNTRY,
         {variables: { country:  country,}},);
 
     if (error) {
@@ -38,6 +38,11 @@ const Info = ({route}) => {
         );
     }
 
+    }
+   catch (error) {
+        return <View style={styles.container}><Text>Please select a country from the Home page to see more information about the selected country</Text></View>;
+   }
+
 };
 
 export default Info;
@@ -50,5 +55,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-//{JSON.stringify(countryInfo)}
