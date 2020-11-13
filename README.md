@@ -67,7 +67,7 @@ Vi brukte i tillegg mongoose til mongoDB objekt-modellering.
 Hovedgrunnen til at vi valgte Apollo-client i frontend var fordi vi allerede hadde tatt i bruk Apollo-server i backend. Denne er tatt i bruk på samme måte som react appen fra prosjekt 3. 
 
 ## React Native
-Hele prosjektet er basert på React Native med Expo Client, og Typescript er brukt til implementasjon. Prosjektet ble opprettet ved å først installere Expo Client med kommandoen ´npm install --global expo-cli´. Deretter opprettet vi et nytt prosjekt med kommandoen ´expo init prosjekt4a´ og valgte å sette opp med blank workflow i TypeScript. Prosjektet ble dermed satt opp med en grunnleggende struktur for frontend. Backend kopierte vi fra prosjekt 3.
+Hele prosjektet er basert på React Native med Expo Client, og Typescript er brukt til implementasjon. Prosjektet ble opprettet ved å først installere Expo Client med kommandoen `npm install --global expo-cli`. Deretter opprettet vi et nytt prosjekt med kommandoen `expo init prosjekt4a` og valgte å sette opp med blank workflow i TypeScript. Prosjektet ble dermed satt opp med en grunnleggende struktur for frontend. Backend kopierte vi fra prosjekt 3.
 Alle komponentene vi har er skrevet som funksjonelle komponenter. Tidligere var funksjonelle komponenter uten tilstand, altså stateless, men med hooks kan man bruke useState og useEffect til å oppnå samme tilstandshåndtering som i en klassekomponent. Funksjonelle komponenter er korte, effektive og leselige.
 
 # Git
