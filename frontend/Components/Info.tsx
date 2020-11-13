@@ -30,17 +30,33 @@ const Info = ({route}) => {
     else {
         return (
         <View style={styles.container}>
-            <Text>Country: {data.country.country}</Text>
-            <Text>City: {data.country.city}</Text>
-            <Text>Continent: {data.country.continent}</Text>
-            <Text>National dish: {data.country.dish}</Text>
+            <View style={styles.inline}>
+                <Text style={styles.bold}>Country: </Text>
+                <Text>{data.country.country}</Text>
+            </View>
+            <View style={styles.inline}>
+                <Text style={styles.bold}>City: </Text>
+                <Text>{data.country.city}</Text>
+            </View>
+            <View style={styles.inline}>
+                <Text style={styles.bold}>Continent: </Text>
+                <Text>{data.country.continent}</Text>
+            </View>
+            <View style={styles.inline}>
+                <Text style={styles.bold}>National dish: </Text>
+                <Text>{data.country.dish}</Text>
+            </View>
         </View>
         );
     }
 
     }
    catch (error) {
-        return <View style={styles.container}><Text>Please select a country from the Home page to see more information about the selected country</Text></View>;
+        return (
+            <View style={styles.container}>
+                <Text style={styles.bold}>This page will show you more information about your selected country. Please select a country from the Home page</Text>
+            </View>
+        );
    }
 
 };
@@ -48,10 +64,17 @@ const Info = ({route}) => {
 export default Info;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '10%',
+    },
+    inline: {
+        flexDirection:'row',
+    },
+    bold: {
+        fontWeight: 'bold'
+    }
 });
