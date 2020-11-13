@@ -4,6 +4,7 @@ import {gql, useQuery} from "@apollo/client";
 import { DataTable } from 'react-native-paper';
 import {Button, SearchBar} from "react-native-elements";
 import {Ionicons} from "@expo/vector-icons";
+import {countrySchema} from "../../backend/src/models/country";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -25,11 +26,11 @@ function handleClick(country:any) {
         }
     }
 
-const AlleLand = ({navigation}) => {
+const AlleLand = ({navigation}:any) => {
 
+    //useStates og konstanter
     const [page, setPage] = React.useState(0);
     const from = page * itemsPerPage;
-    const to = (page + 1) * itemsPerPage;
 
     const [search, setSearch] = React.useState("");
     const [filter, setFilter] = React.useState("");
@@ -42,6 +43,51 @@ const AlleLand = ({navigation}) => {
                 sort: sort,
                 skip: page * itemsPerPage
                 }},);
+
+    let to = (page + 1) * itemsPerPage;
+    /*if (to >= countCountries()) {
+        to = countCountries();
+
+    }
+    else {
+        to = (page + 1) * itemsPerPage;
+    }
+     */
+    //const to = (page + 1) * itemsPerPage;
+
+    //Teller forekomster av land til pagination
+    function countCountries() {
+        let count = 0;
+        if (search) {
+            count = data.countries.length;
+        }
+        else if (filter === "Africa") {
+            count = 59;
+        }
+        else if (filter === "Asia" || filter === "Europe") {
+            count = 50;
+        }
+        else if (filter === "Oceania") {
+            count = 28;
+        }
+        else if (filter === "North America") {
+            count = 35;
+        }
+        else if (filter === "South America") {
+            count = 16;
+        }
+        else {
+            count = 243;
+        }
+
+        if (to >= count) {
+            to = count;
+        }
+        else {
+            to = (page + 1) * itemsPerPage;
+        }
+        return count;
+    }
 
     function filterContinent(continent:string) {
         setFilter(continent);
@@ -145,9 +191,9 @@ const AlleLand = ({navigation}) => {
 
                         <DataTable.Pagination
                             page={page}
-                            numberOfPages={Math.ceil(243 / itemsPerPage)}
+                            numberOfPages={Math.ceil(countCountries() / itemsPerPage)}
                             onPageChange={page => setPage(page)}
-                            label={`${from + 1}-${to} of ${243}`}
+                            label={`${from + 1}-${to} of ${countCountries()}`}
                         />
                     </DataTable>}
             </ScrollView>
