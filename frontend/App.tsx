@@ -1,5 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+<<<<<<< frontend/App.tsx
+import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import {Scene, Router, Actions} from 'react-native-router-flux';
 import {ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, useQuery, gql} from '@apollo/client';
 import { NetworkInfo } from "react-native-network-info";
@@ -8,6 +9,7 @@ import Constants from 'expo-constants';
 
 import TabNav from "./Components/TabNav";
 import {Header, SearchBar} from "react-native-elements";
+import {NavigationContainer} from "@react-navigation/native";
 
 
 const {manifest} = Constants
@@ -38,12 +40,14 @@ export default function App() {
 
   return (
         <ApolloProvider client={client}>
-          <Header placement={"center"}  centerComponent={{ text: "P A N G E A", style: {fontSize: 20}}}
+            <NavigationContainer>
+                <Header placement={"center"}  centerComponent={{ text: "P A N G E A", style: {fontSize: 20}}}
                   containerStyle={{
                     backgroundColor: '#DFAE74',
                     justifyContent: 'space-around',
                   }}/>
-          <TabNav/>
+                <TabNav/>
+            </NavigationContainer>
         </ApolloProvider>
   );
 }

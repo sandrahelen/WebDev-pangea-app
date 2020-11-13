@@ -1,3 +1,4 @@
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from "react";
 import {View, Text, StyleSheet, ScrollView, SafeAreaView} from "react-native";
@@ -20,7 +21,14 @@ const GET_COUNTRIES = gql`
 
 const itemsPerPage = 10;
 
-const AlleLand = () => {
+function handleClick(country:any) {
+        if (country !== null || undefined) {
+            localStorage.setItem('country', country.toString());
+            console.log(localStorage.getItem('country'))
+        }
+    }
+
+const AlleLand = ({navigation}) => {
 
     const [page, setPage] = React.useState(0);
     const from = page * itemsPerPage;
@@ -136,12 +144,12 @@ const AlleLand = () => {
                             <DataTable.Title>Continent</DataTable.Title>
                         </DataTable.Header>
 
-                        {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
-                            <DataTable.Row>
-                                <DataTable.Cell key={countryData.toString()}>{countryData.country}</DataTable.Cell>
-                                <DataTable.Cell>{countryData.continent}</DataTable.Cell>
-                            </DataTable.Row>
-                        ))}
+                {data.countries.map((countryData: { country: React.ReactNode; continent: React.ReactNode; }) => (
+                        <DataTable.Row onPress={() =>  navigation.navigate('Info', {countryInfo: countryData.country})} key={JSON.stringify(countryData.country)}>
+                            <DataTable.Cell  >{countryData.country}</DataTable.Cell>
+                            <DataTable.Cell>{countryData.continent}</DataTable.Cell>
+                        </DataTable.Row>
+                ))}
 
                         <DataTable.Pagination
                             page={page}
