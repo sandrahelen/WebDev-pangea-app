@@ -80,7 +80,7 @@ Følgende funksjonalitet kan testes:
 
 Når appen åpnes kommer brukeren inn på Home skjermen. Det er synlig ved at bakgrunnen til Home ikonet, en globus, får mørk bakgrunn. På toppen av skjermen er en overskrift med PANGEA. Innholdet på Home er en tabell over land i verden. Det er 10 og 10 land som vises samtidig og brukeren kan bla mellom sidene. 
 
-Under overskriften på Home vises en søke bar. Her kan en bruker søke med ord og bokstaver for å finne land som inneholder søkeordet. Ved søk på “way” vil Norway komme opp (men siden søk er case sensitiv så vil ikke “Way” ha noe resultat). 
+Under overskriften på Home vises en søke bar. Her kan en bruker søke med ord og bokstaver for å finne land som inneholder søkeordet. Ved søk på “way” vil Norway komme opp, men siden søk er case sensitiv så vil ikke “Way” ha noe resultat. 
 
 Knappene under søkefunksjonaliteten lar brukeren filtrere country dataen. Dersom knappen Asia trykkes, vil kun land fra Asia vises. For å vise alle mulige land igjen, må knappen for Alle land trykkes. 
 
