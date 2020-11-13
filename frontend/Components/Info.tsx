@@ -13,7 +13,7 @@ const GET_COUNTRY = gql`
     }
 `;
 
-const Info = ({route}) => {
+const Info = ({route}:any) => {
 
     try {
         let country = route.params.countryInfo;
@@ -51,6 +51,7 @@ const Info = ({route}) => {
     }
 
     }
+    //Dersom land ikke er valgt skrives kun tekst ut
    catch (error) {
         return (
             <View style={styles.container}>
